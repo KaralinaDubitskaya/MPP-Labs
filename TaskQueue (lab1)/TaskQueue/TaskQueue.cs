@@ -9,7 +9,6 @@ namespace TaskQueue
 {
     public class TaskQueue
     {
-        // task queue
         private BlockingQueue<TaskDelegate> tasks;
 
         public TaskQueue(byte count)
