@@ -80,6 +80,8 @@ namespace TaskQueue
                 throw;
             }
 
+            taskQueue.Dispose();
+
             // Return count of copied files
             return filesCopied;
         }
