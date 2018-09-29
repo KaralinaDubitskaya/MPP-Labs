@@ -9,6 +9,24 @@ namespace TaskQueue
 {
     class Program
     {
+<<<<<<< HEAD
+        public static void PrintInfo()
+        {
+            Console.WriteLine("Current thread name: " + Thread.CurrentThread.Name);
+            Thread.Sleep(100);
+        }
+
+        static void Main(string[] args)
+        {
+            var taskQueue = new TaskQueue(5);
+
+            for (int i = 0; i < 10; i++)
+            {
+                taskQueue.EnqueueTask(PrintInfo);
+            }
+
+            Console.ReadKey();
+=======
         private const int ARG_COUNT = 2;
 
         static void Main(string[] args)
@@ -34,8 +52,7 @@ namespace TaskQueue
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-
-            directoryCopier.Dispose();
+>>>>>>> dev
         }
     }
 }

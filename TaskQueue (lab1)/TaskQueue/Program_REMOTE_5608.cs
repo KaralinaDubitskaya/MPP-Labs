@@ -34,8 +34,6 @@ namespace TaskQueue
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-
-            directoryCopier.Dispose();
         }
     }
 }
