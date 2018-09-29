@@ -9,30 +9,19 @@ namespace TaskQueue
 {
     class Program
     {
-        private const int ARG_COUNT = 2;
+        public static void PrintInfo()
+        {
+            Console.WriteLine("Current thread name: " + Thread.CurrentThread.Name);
+            Thread.Sleep(100);
+        }
 
         static void Main(string[] args)
         {
-            if (args.Length != ARG_COUNT)
-            {
-                Console.WriteLine("Error: invalid input.");
-                Console.WriteLine("Usage: TaskQueue.exe 'source_path' 'target_path'");
-                return;
-            }
+            var taskQueue = new TaskQueue(5);
 
-            string sourcePath = args[0];
-            string targetPath = args[1];
-
-            var directoryCopier = new DirectoryCopier(5);
-
-            try
+            for (int i = 0; i < 10; i++)
             {
-                uint copiedFiles = directoryCopier.Copy(sourcePath, targetPath);
-                Console.WriteLine($"{copiedFiles} files were copied successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
+                taskQueue.EnqueueTask(PrintInfo);
             }
 
             directoryCopier.Dispose();

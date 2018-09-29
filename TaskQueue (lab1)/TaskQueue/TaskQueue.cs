@@ -9,15 +9,12 @@ namespace TaskQueue
 {
     public class TaskQueue
     {
-        private List<Thread> _threadPool;
-        private BlockingQueue<TaskDelegate> _tasks;
-        private int _activeThreads;
-
+        // task queue
+        private BlockingQueue<TaskDelegate> tasks;
 
         public TaskQueue(byte count)
         {
-            _threadPool = new List<Thread>();
-            _tasks = new BlockingQueue<TaskDelegate>();
+            tasks = new BlockingQueue<TaskDelegate>();
 
             // create and start *count* threads 
             for (int i = 0; i < count; i++)
@@ -25,7 +22,6 @@ namespace TaskQueue
                 var thread = new Thread(PerformTask);
                 thread.Name = "Thread" + i;
                 thread.IsBackground = true;
-                _threadPool.Add(thread);
                 thread.Start();
             }
         }
@@ -36,7 +32,7 @@ namespace TaskQueue
         // enqueue task for execution 
         public void EnqueueTask(TaskDelegate task)
         {
-            _tasks.Enqueue(task);
+            tasks.Enqueue(task);
         }
 
         // method to be invoked when a thread begins executing
@@ -44,14 +40,13 @@ namespace TaskQueue
         {
             while (true)
             {
-                while (_tasks.IsEmpty) { }
+                while (tasks.IsEmpty) { }
 
                 // get another task
-                TaskDelegate task = _tasks.Dequeue();
+                TaskDelegate task = tasks.Dequeue();
 
                 if (task == null) { continue; }
 
-                Interlocked.Increment(ref _activeThreads);
                 try
                 {
                     // execute the task
@@ -61,19 +56,6 @@ namespace TaskQueue
                 {
                     Console.WriteLine("Error: " + ex.Message);
                 }
-                Interlocked.Decrement(ref _activeThreads);
-            }
-        }
-
-        public void Dispose()
-        {
-            // Wait until tasks are complited
-            while (_activeThreads != 0 || _tasks.Count != 0) { }
-
-            // Abort all threads
-            foreach (var thread in _threadPool)
-            {
-                thread.Abort();
             }
         }
     }
