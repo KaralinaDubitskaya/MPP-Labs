@@ -9,16 +9,14 @@ namespace TaskQueue
 {
     public class DirectoryCopier
     {
-        private string _sourcePath;
-        private string _targetPath;
-
-        private byte _threadCount;
+        private TaskQueue _taskQueue;
 
         // DirectoryCopier is used to copy files from one directory to another
         // threadCount - count of threads used for copying
         public DirectoryCopier(byte threadCount)
         {
-            _threadCount = threadCount;
+            // Create task queue
+            _taskQueue = new TaskQueue(threadCount);
         }
 
         // Copy all files from sourcePath to targetPath overwriting files with the same name
@@ -36,15 +34,12 @@ namespace TaskQueue
                 Directory.CreateDirectory(targetPath);
             }
 
-            _sourcePath = sourcePath;
-            _targetPath = targetPath;
-
             uint copiedFiles = 0;
 
             try
             {
                 // Return count of copied files
-                copiedFiles = CopyFiles();
+                copiedFiles = CopyFiles(sourcePath, targetPath);
             }
             catch
             {
@@ -54,24 +49,34 @@ namespace TaskQueue
             return copiedFiles; 
         }
 
-        private uint CopyFiles()
+        public void Dispose()
+        {
+            _taskQueue.Dispose();
+        }
+
+        private uint CopyFiles(string source, string destination)
         {
             // Count of copied files
             uint filesCopied = 0;
 
             // Get file's paths
-            string[] files = Directory.GetFiles(_sourcePath);
+            string[] files = Directory.GetFiles(source);
 
-            // Create task queue
-            var taskQueue = new TaskQueue(_threadCount);
+            string[] directories = Directory.GetDirectories(source);
 
             try
             {
                 // Copy each file using taskQueue
                 foreach (string file in files)
                 {
-                    taskQueue.EnqueueTask(() => CopyFile(file));  
+                    _taskQueue.EnqueueTask(() => CopyFile(file, destination));  
                     filesCopied++;
+                }
+
+                foreach (string directory in directories)
+                {
+                    string targetPath = directory.Replace(source, destination);
+                    filesCopied += Copy(directory, targetPath);
                 }
             }
             catch 
@@ -80,18 +85,16 @@ namespace TaskQueue
                 throw;
             }
 
-            taskQueue.Dispose();
-
             // Return count of copied files
             return filesCopied;
         }
 
         // Copy source file to the destination. Overwrites a file of the same name.
-        private void CopyFile(string sourceFile)
+        private void CopyFile(string sourceFile, string targetPath)
         {
             // Get a destination file path
             string fileName = Path.GetFileName(sourceFile);
-            string destFile = Path.Combine(_targetPath, fileName);
+            string destFile = Path.Combine(targetPath, fileName);
 
             // Copy the file to destination path
             try
