@@ -24,7 +24,7 @@ namespace TaskQueue
                 taskQueue.EnqueueTask(PrintInfo);
             }
 
-            directoryCopier.Dispose();
+            Console.ReadKey();
         }
     }
 }
