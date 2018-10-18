@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryCopier", "TaskQueu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mutex", "Mutex (lab 3)\Mutex.csproj", "{2631A953-81DC-4E9A-857B-A1639ADCDAD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyLoader", "AssemblyLoader\AssemblyLoader.csproj", "{A0A7548F-8136-459B-A585-9CD471E78CF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2631A953-81DC-4E9A-857B-A1639ADCDAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2631A953-81DC-4E9A-857B-A1639ADCDAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2631A953-81DC-4E9A-857B-A1639ADCDAD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A7548F-8136-459B-A585-9CD471E78CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A7548F-8136-459B-A585-9CD471E78CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A7548F-8136-459B-A585-9CD471E78CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A7548F-8136-459B-A585-9CD471E78CF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
