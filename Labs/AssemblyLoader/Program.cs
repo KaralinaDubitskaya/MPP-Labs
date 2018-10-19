@@ -38,8 +38,6 @@ namespace AssemblyLoader
             {
                 PrintTypeInfo(type);
             }
-
-            Console.ReadKey();
         }
 
         private static void PrintTypeInfo(Type type)
