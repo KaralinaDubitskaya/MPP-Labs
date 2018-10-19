@@ -40,6 +40,7 @@ namespace AssemblyLoader
 
         // Return array that contains info about public types of the assembly
         // sorted by the namespace and by the name
+
         public IEnumerable<Type> GetPublicTypes()
         {
             return _assembly.GetTypes()
