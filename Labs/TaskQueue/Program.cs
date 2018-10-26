@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace TaskQueue
+namespace ThreadPool
 {
     class Program
     {
@@ -16,7 +16,7 @@ namespace TaskQueue
             if (args.Length != ARG_COUNT)
             {
                 Console.WriteLine("Error: invalid input.");
-                Console.WriteLine("Usage: TaskQueue.exe 'source_path' 'target_path'");
+                Console.WriteLine("Usage: ThreadPool.exe 'source_path' 'target_path'");
                 return;
             }
 

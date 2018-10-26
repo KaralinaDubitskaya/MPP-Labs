@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ThreadPool")]
+[assembly: AssemblyTitle("DynamicList")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("gypnor")]
-[assembly: AssemblyProduct("ThreadPool")]
+[assembly: AssemblyProduct("DynamicList")]
 [assembly: AssemblyCopyright("Copyright © gypnor 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("738bb674-078b-4735-b6cb-cbf878d1de7d")]
+[assembly: Guid("cab635a3-8fcf-4c29-8a5f-d74a46c0723e")]
 
 // Version information for an assembly consists of the following four values:
 //

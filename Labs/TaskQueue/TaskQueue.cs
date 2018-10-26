@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace TaskQueue
+namespace ThreadPool
 {
-    public class TaskQueue
+    public class TaskQueue : IDisposable
     {
         private List<Thread> _threadPool;
         private BlockingQueue<TaskDelegate> _tasks;
