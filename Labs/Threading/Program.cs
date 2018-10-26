@@ -19,7 +19,7 @@ namespace Threading
             if (args.Length != ARG_COUNT)
             {
                 Console.WriteLine("Error: invalid input.");
-                Console.WriteLine("Usage: Parallel.exe 'number_of_threads'");
+                Console.WriteLine("Usage: Threading.exe 'number_of_threads'");
                 return;
             }
 
